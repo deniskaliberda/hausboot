@@ -29,4 +29,6 @@ export const AMENITY_ICONS: Record<string, string> = {
   badezimmer: "Bath",
   wasser: "Droplets",
   parkplatz: "ParkingCircle",
+  fliegengitter: "ShieldCheck",
+  pelletofen: "Flame",
 };

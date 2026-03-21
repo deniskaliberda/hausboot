@@ -10,20 +10,23 @@ import {
   Bath,
   Droplets,
   ParkingCircle,
+  ShieldCheck,
 } from "lucide-react";
 
 const amenities = [
-  { icon: Thermometer, label: "Finnische Sauna", description: "Mit Blick aufs Wasser" },
+  { icon: Thermometer, label: "Finnische Sauna", description: "Brennholz wird gestellt" },
   { icon: Flame, label: "Kamin", description: "Gemütliche Abende" },
   { icon: Wifi, label: "WLAN", description: "Kostenloses High-Speed" },
   { icon: ChefHat, label: "Voll ausgestattete Küche", description: "Zum gemeinsamen Kochen" },
-  { icon: Beef, label: "Grill", description: "Auf der Dachterrasse" },
+  { icon: Beef, label: "Grill", description: "Brennholz wird gestellt" },
   { icon: Sun, label: "Dachterrasse", description: "Mit Sonnendeck" },
-  { icon: Waves, label: "SUP-Boards", description: "Inklusive" },
-  { icon: Bike, label: "Fahrräder", description: "Für Ausflüge" },
+  { icon: Waves, label: "1 SUP-Board", description: "Inklusive" },
+  { icon: Bike, label: "2 Fahrräder", description: "Für Ausflüge" },
   { icon: Bath, label: "2 Badezimmer", description: "Modern ausgestattet" },
   { icon: Droplets, label: "Direkter Wasserzugang", description: "Baden vom Boot" },
   { icon: ParkingCircle, label: "Parkplatz", description: "Direkt im Hafen" },
+  { icon: ShieldCheck, label: "Fliegengitter", description: "In allen Schlafzimmern" },
+  { icon: Flame, label: "Pellet-Kaminofen", description: "Im Saloon (ab Herbst 2026)" },
 ];
 
 export function AmenitiesGrid() {

@@ -18,11 +18,13 @@ export const properties: PropertyWithImages[] = [
 
 Das Hausboot verbindet modernen Komfort mit einem einzigartigen Naturerlebnis. Genießen Sie den freien Blick auf die Dahme, entspannen Sie in der finnischen Sauna oder am Kamin und lassen Sie den Tag auf der großzügigen Dachterrasse mit Sonnendeck ausklingen.
 
-Die voll ausgestattete Küche lädt zum gemeinsamen Kochen ein, und vom Boot aus können Sie direkt ins Wasser springen. SUP-Boards und Fahrräder stehen Ihnen kostenlos zur Verfügung.
+Die voll ausgestattete Küche lädt zum gemeinsamen Kochen ein, und vom Boot aus können Sie direkt ins Wasser springen. Ein SUP-Board und 2 Fahrräder stehen Ihnen kostenlos zur Verfügung. Brennholz für Sauna und Grill wird bereitgestellt.
+
+Ab Herbst 2026 erwartet Sie zusätzlich ein Pellet-Kaminofen im Saloon für noch gemütlichere Abende.
 
 In unmittelbarer Nähe finden Sie Einkaufsmöglichkeiten, einen Bäcker und ausgezeichnete Restaurants. Parkplätze stehen direkt im Hafen bereit.`,
     max_guests: 8,
-    bedrooms: 3,
+    bedrooms: 4,
     bathrooms: 2,
     address: "Sportboothafen Schmöckwitz",
     city: "Berlin",
@@ -45,13 +47,15 @@ In unmittelbarer Nähe finden Sie Einkaufsmöglichkeiten, einen Bäcker und ausg
       "badezimmer",
       "wasser",
       "parkplatz",
+      "fliegengitter",
+      "pelletofen",
     ],
     airbnb_ical_url: null,
     airbnb_listing_url:
       "https://www.airbnb.de/rooms/1568082071593446331",
     meta_title: "Luxus Hausboot Berlin-Schmöckwitz | Sauna & Kamin | Jetzt buchen",
     meta_description:
-      "Luxus-Hausboot an der Dahme: 3 Schlafzimmer, finnische Sauna, Kamin, Dachterrasse. Bis zu 8 Gäste. Ab 350 €/Nacht. Direkt buchen!",
+      "Luxus-Hausboot an der Dahme: 4 Schlafzimmer, finnische Sauna, Kamin, Dachterrasse. Bis zu 8 Gäste. Ab 350 €/Nacht. Direkt buchen!",
     is_active: true,
     created_at: "2026-01-01T00:00:00Z",
     updated_at: "2026-03-10T00:00:00Z",

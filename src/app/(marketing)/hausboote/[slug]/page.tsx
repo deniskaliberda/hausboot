@@ -12,6 +12,7 @@ import {
   Bath,
   Droplets,
   ParkingCircle,
+  ShieldCheck,
   Users,
   BedDouble,
   MapPin,
@@ -34,11 +35,13 @@ const amenityConfig: Record<string, { icon: typeof Thermometer; label: string }>
   kueche: { icon: ChefHat, label: "Voll ausgestattete Küche" },
   grill: { icon: Beef, label: "Grill" },
   dachterrasse: { icon: Sun, label: "Dachterrasse & Sonnendeck" },
-  sup: { icon: Waves, label: "SUP-Boards inklusive" },
-  fahrraeder: { icon: Bike, label: "Fahrräder" },
+  sup: { icon: Waves, label: "1 SUP-Board inklusive" },
+  fahrraeder: { icon: Bike, label: "2 Fahrräder" },
   badezimmer: { icon: Bath, label: "2 Badezimmer" },
   wasser: { icon: Droplets, label: "Direkter Wasserzugang" },
   parkplatz: { icon: ParkingCircle, label: "Parkplatz im Hafen" },
+  fliegengitter: { icon: ShieldCheck, label: "Fliegengitter in Schlafzimmern" },
+  pelletofen: { icon: Flame, label: "Pellet-Kaminofen (ab Herbst 2026)" },
 };
 
 export function generateStaticParams() {
