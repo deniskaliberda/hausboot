@@ -16,11 +16,11 @@ export function SmoobuCalendar() {
   }, []);
 
   return (
-    <div id="smoobuApartment2972646de" className="calendarWidget">
+    <div id="smoobuApartment3053686de" className="calendarWidget">
       <div
         className="calendarContent"
-        data-load-calendar-url="https://login.smoobu.com/de/cockpit/widget/single-calendar/2972646"
-        data-verification="ce59a5f951c778b0781190119deb1494cdca05a8b46c79face9ae3fc49f8ccf1"
+        data-load-calendar-url="https://login.smoobu.com/de/cockpit/widget/single-calendar/3053686"
+        data-verification="c5562d18c755012730a98829c73f4b12deacef1bf657abbccd876c8d01f49ed0"
         data-baseurl="https://login.smoobu.com"
         data-disable-css="false"
       />
