@@ -7,7 +7,6 @@ import { LocationSection } from "@/components/sections/LocationSection";
 import { CTASection } from "@/components/sections/CTASection";
 import { PropertyJsonLd } from "@/components/seo/JsonLd";
 import { PhotoGallery } from "@/components/property/PhotoGallery";
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buttonVariants } from "@/lib/utils/button-variants";
 import { cn } from "@/lib/utils";
@@ -20,10 +19,23 @@ import {
   Thermometer,
   Flame,
   Sun,
+  Anchor,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const galleryImages = getGalleryImages(PROPERTY);
+
+const IMAGES_BASE = "/images/properties/luxus-hausboot-dahme";
+
+const quickStats = [
+  { icon: Users, label: `Bis zu ${PROPERTY.max_guests} Gäste` },
+  { icon: BedDouble, label: `${PROPERTY.bedrooms} Schlafzimmer` },
+  { icon: Bath, label: `${PROPERTY.bathrooms} Badezimmer` },
+  { icon: Thermometer, label: "Finnische Sauna" },
+  { icon: Flame, label: "Kamin" },
+  { icon: Sun, label: "Dachterrasse" },
+];
 
 export default function HomePage() {
   return (
@@ -33,82 +45,105 @@ export default function HomePage() {
       <main>
         <Hero />
 
-        {/* Photo Gallery */}
-        <section className="py-16">
+        {/* Story + About the Boat — Stitch-inspired split */}
+        <section className="py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <PhotoGallery images={galleryImages} propertyName={PROPERTY.name} />
-          </div>
-        </section>
-
-        {/* Quick Stats + Description */}
-        <section className="py-16">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid gap-12 lg:grid-cols-3">
-              {/* Main content */}
-              <div className="lg:col-span-2">
-                {/* Quick stats */}
-                <div className="flex flex-wrap gap-3">
-                  <Badge variant="secondary" className="gap-1.5 px-4 py-2 text-sm">
-                    <Users className="h-4 w-4" /> Bis zu {PROPERTY.max_guests} Gäste
-                  </Badge>
-                  <Badge variant="secondary" className="gap-1.5 px-4 py-2 text-sm">
-                    <BedDouble className="h-4 w-4" /> {PROPERTY.bedrooms} Schlafzimmer
-                  </Badge>
-                  <Badge variant="secondary" className="gap-1.5 px-4 py-2 text-sm">
-                    <Bath className="h-4 w-4" /> {PROPERTY.bathrooms} Badezimmer
-                  </Badge>
-                  <Badge variant="secondary" className="gap-1.5 px-4 py-2 text-sm">
-                    <Thermometer className="h-4 w-4" /> Finnische Sauna
-                  </Badge>
-                  <Badge variant="secondary" className="gap-1.5 px-4 py-2 text-sm">
-                    <Flame className="h-4 w-4" /> Kamin
-                  </Badge>
-                  <Badge variant="secondary" className="gap-1.5 px-4 py-2 text-sm">
-                    <Sun className="h-4 w-4" /> Dachterrasse
-                  </Badge>
+            <div className="grid gap-16 lg:grid-cols-2">
+              {/* Our Story */}
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                  Unsere Geschichte
+                </p>
+                <h2 className="mt-3 font-serif text-3xl font-bold sm:text-4xl">
+                  Geschaffen für
+                  <br />
+                  Erholung
+                </h2>
+                <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
+                  <p>
+                    Unser Luxus-Hausboot liegt idyllisch am Ufer der Dahme in
+                    Berlin-Schmöckwitz und bietet Platz für bis zu 8 Personen.
+                    Es verbindet modernen Komfort mit einem einzigartigen
+                    Naturerlebnis.
+                  </p>
+                  <p>
+                    Genießen Sie den freien Blick auf die Dahme, entspannen Sie
+                    in der finnischen Sauna oder am Kamin und lassen Sie den Tag
+                    auf der großzügigen Dachterrasse mit Sonnendeck ausklingen.
+                  </p>
                 </div>
 
-                <Separator className="my-8" />
-
-                {/* Description */}
-                <div>
-                  <h2 className="font-serif text-2xl font-semibold">
-                    Über dieses Hausboot
-                  </h2>
-                  <div className="mt-4 space-y-4 text-muted-foreground">
-                    {PROPERTY.description.split("\n\n").map((paragraph, i) => (
-                      <p key={i}>{paragraph}</p>
-                    ))}
-                  </div>
+                {/* Inline image */}
+                <div className="mt-8 overflow-hidden rounded-2xl">
+                  <Image
+                    src={`${IMAGES_BASE}/sauna.jpg`}
+                    alt="Finnische Sauna mit Panoramablick auf den See"
+                    width={600}
+                    height={400}
+                    className="h-64 w-full object-cover"
+                  />
                 </div>
               </div>
 
-              {/* Booking sidebar */}
-              <div className="lg:col-span-1">
-                <div className="sticky top-20 rounded-xl border bg-card p-6 shadow-sm">
-                  <div className="flex items-baseline gap-1">
+              {/* About the Boat */}
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                  Über das Boot
+                </p>
+                <h2 className="mt-3 font-serif text-3xl font-bold sm:text-4xl">
+                  Ausstattung &amp; Details
+                </h2>
+
+                {/* Stats grid */}
+                <div className="mt-8 grid grid-cols-2 gap-4">
+                  {quickStats.map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="flex items-center gap-3 rounded-xl bg-sand p-4"
+                    >
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
+                        <stat.icon className="h-5 w-5 text-primary" />
+                      </div>
+                      <span className="text-sm font-medium">{stat.label}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Pricing card */}
+                <div className="mt-8 rounded-2xl border bg-card p-6 shadow-sm">
+                  <div className="flex items-center gap-2">
+                    <Anchor className="h-5 w-5 text-primary" />
+                    <span className="text-sm font-medium text-muted-foreground">
+                      Preise
+                    </span>
+                  </div>
+
+                  <div className="mt-4 flex items-baseline gap-1">
                     <span className="text-3xl font-bold">
                       {formatEuro(PROPERTY.base_price_per_night)}
                     </span>
                     <span className="text-muted-foreground">/ Nacht</span>
                   </div>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    + {formatEuro(PROPERTY.cleaning_fee)} Reinigung (einmalig)
-                  </p>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    + {formatEuro(PROPERTY.laundry_fee_per_person)} Wäsche pro Person
-                  </p>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    Mindestaufenthalt: {PROPERTY.min_nights} Nächte
-                  </p>
+
+                  <div className="mt-3 space-y-1 text-sm text-muted-foreground">
+                    <p>+ {formatEuro(PROPERTY.cleaning_fee)} Reinigung (einmalig)</p>
+                    <p>
+                      + {formatEuro(PROPERTY.laundry_fee_per_person)} Wäsche pro
+                      Person
+                    </p>
+                    <p>Mindestaufenthalt: {PROPERTY.min_nights} Nächte</p>
+                  </div>
 
                   <Separator className="my-4" />
 
                   <Link
                     href="/buchen"
-                    className={cn(buttonVariants({ size: "lg" }), "mt-4 w-full")}
+                    className={cn(
+                      buttonVariants({ size: "lg" }),
+                      "w-full rounded-full"
+                    )}
                   >
-                    Jetzt buchen
+                    Verfügbarkeit prüfen
                   </Link>
 
                   <p className="mt-3 text-center text-xs text-muted-foreground">
@@ -117,6 +152,21 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Photo Gallery */}
+        <section className="bg-sand/50 py-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-10 text-center">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                Impressionen
+              </p>
+              <h2 className="mt-3 font-serif text-3xl font-bold sm:text-4xl">
+                Einblicke in Ihr Hausboot
+              </h2>
+            </div>
+            <PhotoGallery images={galleryImages} propertyName={PROPERTY.name} />
           </div>
         </section>
 

@@ -3,18 +3,18 @@ import { Anchor, Mail, Phone, MapPin } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="border-t bg-muted/50">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+    <footer className="bg-primary text-primary-foreground">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
           {/* Brand */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2">
-              <Anchor className="h-5 w-5 text-primary" />
-              <span className="font-serif text-lg font-bold text-primary">
+            <Link href="/" className="flex items-center gap-2.5">
+              <Anchor className="h-5 w-5" />
+              <span className="font-serif text-lg font-bold tracking-tight">
                 Luxus Hausboot
               </span>
             </Link>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-primary-foreground/65 leading-relaxed">
               Einzigartiges Luxus-Hausboot in Berlin-Schmöckwitz.
               Direkt am Wasser der Dahme.
             </p>
@@ -23,24 +23,24 @@ export function Footer() {
           {/* Navigation */}
           <div>
             <h3 className="mb-4 text-sm font-semibold">Navigation</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <ul className="space-y-2.5 text-sm text-primary-foreground/65">
               <li>
-                <Link href="/buchen" className="hover:text-foreground">
+                <Link href="/buchen" className="transition-colors hover:text-primary-foreground">
                   Jetzt buchen
                 </Link>
               </li>
               <li>
-                <Link href="/oldtimer-tour" className="hover:text-foreground">
+                <Link href="/oldtimer-tour" className="transition-colors hover:text-primary-foreground">
                   Oldtimer Tour
                 </Link>
               </li>
               <li>
-                <Link href="/ueber-uns" className="hover:text-foreground">
+                <Link href="/ueber-uns" className="transition-colors hover:text-primary-foreground">
                   Über uns
                 </Link>
               </li>
               <li>
-                <Link href="/faq" className="hover:text-foreground">
+                <Link href="/faq" className="transition-colors hover:text-primary-foreground">
                   FAQ
                 </Link>
               </li>
@@ -50,20 +50,20 @@ export function Footer() {
           {/* Kontakt */}
           <div>
             <h3 className="mb-4 text-sm font-semibold">Kontakt</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <ul className="space-y-2.5 text-sm text-primary-foreground/65">
               <li className="flex items-center gap-2">
-                <MapPin className="h-4 w-4" />
+                <MapPin className="h-4 w-4 shrink-0" />
                 Berlin-Schmöckwitz
               </li>
               <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4" />
-                <a href="mailto:info@example.de" className="hover:text-foreground">
-                  info@example.de
+                <Mail className="h-4 w-4 shrink-0" />
+                <a href="mailto:info@urlaubsbleibe.de" className="transition-colors hover:text-primary-foreground">
+                  info@urlaubsbleibe.de
                 </a>
               </li>
               <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4" />
-                <a href="tel:+49123456789" className="hover:text-foreground">
+                <Phone className="h-4 w-4 shrink-0" />
+                <a href="tel:+49123456789" className="transition-colors hover:text-primary-foreground">
                   +49 123 456 789
                 </a>
               </li>
@@ -73,24 +73,24 @@ export function Footer() {
           {/* Rechtliches */}
           <div>
             <h3 className="mb-4 text-sm font-semibold">Rechtliches</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <ul className="space-y-2.5 text-sm text-primary-foreground/65">
               <li>
-                <Link href="/impressum" className="hover:text-foreground">
+                <Link href="/impressum" className="transition-colors hover:text-primary-foreground">
                   Impressum
                 </Link>
               </li>
               <li>
-                <Link href="/datenschutz" className="hover:text-foreground">
+                <Link href="/datenschutz" className="transition-colors hover:text-primary-foreground">
                   Datenschutzerklärung
                 </Link>
               </li>
               <li>
-                <Link href="/agb" className="hover:text-foreground">
+                <Link href="/agb" className="transition-colors hover:text-primary-foreground">
                   AGB
                 </Link>
               </li>
               <li>
-                <Link href="/widerrufsbelehrung" className="hover:text-foreground">
+                <Link href="/widerrufsbelehrung" className="transition-colors hover:text-primary-foreground">
                   Widerrufsbelehrung
                 </Link>
               </li>
@@ -98,7 +98,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">
+        <div className="mt-10 border-t border-primary-foreground/10 pt-8 text-center text-sm text-primary-foreground/50">
           <p>&copy; {new Date().getFullYear()} Luxus Hausboot Berlin. Alle Rechte vorbehalten.</p>
         </div>
       </div>

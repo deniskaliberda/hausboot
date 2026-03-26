@@ -31,24 +31,29 @@ const amenities = [
 
 export function AmenitiesGrid() {
   return (
-    <section className="bg-muted/30 py-20">
+    <section className="py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="font-serif text-3xl font-bold sm:text-4xl">
-            Ausstattung & Annehmlichkeiten
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+            Alles inklusive
+          </p>
+          <h2 className="mt-3 font-serif text-3xl font-bold sm:text-4xl">
+            Ausstattung &amp; Annehmlichkeiten
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
             Alles, was Sie für einen perfekten Aufenthalt brauchen
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {amenities.map((amenity) => (
             <div
               key={amenity.label}
-              className="flex flex-col items-center rounded-lg bg-background p-6 text-center shadow-sm transition-shadow hover:shadow-md"
+              className="group flex flex-col items-center rounded-2xl border border-border/50 bg-card p-6 text-center transition-all hover:border-primary/20 hover:shadow-md"
             >
-              <amenity.icon className="h-8 w-8 text-primary" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/8 transition-colors group-hover:bg-primary/15">
+                <amenity.icon className="h-6 w-6 text-primary" />
+              </div>
               <h3 className="mt-3 text-sm font-semibold">{amenity.label}</h3>
               <p className="mt-1 text-xs text-muted-foreground">
                 {amenity.description}
