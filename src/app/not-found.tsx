@@ -18,10 +18,10 @@ export default function NotFound() {
           Zur Startseite
         </Link>
         <Link
-          href="/hausboote"
+          href="/buchen"
           className={cn(buttonVariants({ variant: "outline" }))}
         >
-          Hausboote ansehen
+          Jetzt buchen
         </Link>
       </div>
     </div>

@@ -214,13 +214,8 @@ In unmittelbarer Nähe finden Sie Einkaufsmöglichkeiten, einen Bäcker und ausg
   },
 ];
 
-export function getPropertyBySlug(slug: string): PropertyWithImages | undefined {
-  return properties.find((p) => p.slug === slug && p.is_active);
-}
-
-export function getAllProperties(): PropertyWithImages[] {
-  return properties.filter((p) => p.is_active);
-}
+/** The single houseboat property – used site-wide. */
+export const PROPERTY = properties[0];
 
 export function getHeroImage(property: PropertyWithImages) {
   return (

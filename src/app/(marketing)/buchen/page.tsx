@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { getPropertyBySlug } from "@/lib/data/properties";
+import { PROPERTY } from "@/lib/data/properties";
 import { BookingForm } from "@/components/booking/BookingForm";
 import { ArrowLeft } from "lucide-react";
 import { buttonVariants } from "@/lib/utils/button-variants";
@@ -9,37 +8,30 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Buchen",
+  title: "Jetzt buchen",
+  description: `${PROPERTY.name} in ${PROPERTY.district} – Buchen Sie jetzt Ihr einzigartiges Hausboot-Erlebnis. Ab ${(PROPERTY.base_price_per_night / 100).toFixed(0)} €/Nacht.`,
 };
 
 export default async function BuchenPage({
-  params,
   searchParams,
 }: {
-  params: Promise<{ slug: string }>;
   searchParams: Promise<{ checkIn?: string; checkOut?: string; cancelled?: string }>;
 }) {
-  const { slug } = await params;
   const { checkIn, checkOut, cancelled } = await searchParams;
 
-  const property = getPropertyBySlug(slug);
-  if (!property) {
-    notFound();
-  }
-
   const heroImage =
-    property.property_images.find((img) => img.is_hero) ??
-    property.property_images[0];
+    PROPERTY.property_images.find((img) => img.is_hero) ??
+    PROPERTY.property_images[0];
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       {/* Back link */}
       <Link
-        href={`/hausboote/${slug}`}
+        href="/"
         className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "mb-6")}
       >
         <ArrowLeft className="mr-1 h-4 w-4" />
-        Zurück zum Hausboot
+        Zurück zur Startseite
       </Link>
 
       <div className="grid gap-10 lg:grid-cols-3">
@@ -53,7 +45,7 @@ export default async function BuchenPage({
 
           <div className="mt-8">
             <BookingForm
-              property={property}
+              property={PROPERTY}
               initialCheckIn={checkIn}
               initialCheckOut={checkOut}
               cancelled={cancelled === "true"}
@@ -77,15 +69,15 @@ export default async function BuchenPage({
             )}
             <div className="p-5">
               <h2 className="font-serif text-lg font-semibold">
-                {property.name}
+                {PROPERTY.name}
               </h2>
               <p className="mt-1 text-sm text-muted-foreground">
-                {property.district}
+                {PROPERTY.district}
               </p>
               <div className="mt-3 space-y-1 text-sm text-muted-foreground">
-                <p>Bis zu {property.max_guests} Gäste</p>
+                <p>Bis zu {PROPERTY.max_guests} Gäste</p>
                 <p>
-                  {property.bedrooms} Schlafzimmer · {property.bathrooms} Bäder
+                  {PROPERTY.bedrooms} Schlafzimmer · {PROPERTY.bathrooms} Bäder
                 </p>
                 <p>Finnische Sauna · Kamin · Dachterrasse</p>
               </div>

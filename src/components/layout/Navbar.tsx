@@ -7,7 +7,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/hausboote", label: "Hausboote" },
+  { href: "/buchen", label: "Buchen" },
   { href: "/oldtimer-tour", label: "Oldtimer Tour" },
   { href: "/ueber-uns", label: "Über uns" },
   { href: "/kontakt", label: "Kontakt" },
@@ -22,7 +22,7 @@ export function Navbar() {
         <Link href="/" className="flex items-center gap-2">
           <Anchor className="h-6 w-6 text-primary" />
           <span className="font-serif text-xl font-bold text-primary">
-            Luxus Hausboote
+            Luxus Hausboot
           </span>
         </Link>
 
@@ -37,7 +37,7 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
-          <Link href="/hausboote" className={cn(buttonVariants())}>
+          <Link href="/buchen" className={cn(buttonVariants())}>
             Jetzt buchen
           </Link>
         </nav>
@@ -69,7 +69,7 @@ export function Navbar() {
               </Link>
             ))}
             <Link
-              href="/hausboote"
+              href="/buchen"
               onClick={() => setOpen(false)}
               className={cn(buttonVariants(), "mt-2")}
             >

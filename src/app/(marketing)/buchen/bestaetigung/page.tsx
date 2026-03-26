@@ -60,7 +60,7 @@ export default async function BestatigungPage({
               <div>
                 <p className="font-medium">Hausboot</p>
                 <p className="text-sm text-muted-foreground">
-                  {metadata.property_slug?.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
+                  Luxus Hausboot an der Dahme
                 </p>
               </div>
             </div>
@@ -139,15 +139,9 @@ export default async function BestatigungPage({
         </ul>
       </div>
 
-      <div className="mt-8 flex justify-center gap-4">
+      <div className="mt-8 flex justify-center">
         <Link href="/" className={cn(buttonVariants())}>
           Zurück zur Startseite
-        </Link>
-        <Link
-          href="/hausboote"
-          className={cn(buttonVariants({ variant: "outline" }))}
-        >
-          Weitere Hausboote
         </Link>
       </div>
     </div>

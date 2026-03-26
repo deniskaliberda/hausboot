@@ -16,15 +16,15 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
   title: {
-    default: "Luxus Hausboote Berlin – Übernachtung mit Sauna & Kamin",
-    template: "%s | Luxus Hausboote Berlin",
+    default: "Luxus Hausboot Berlin-Schmöckwitz | Sauna & Kamin | Jetzt buchen",
+    template: "%s | Luxus Hausboot Berlin",
   },
   description:
-    "Einzigartige Luxus-Hausboote in Berlin-Schmöckwitz. Sauna, Kamin, Dachterrasse – direkt am Wasser der Dahme. Jetzt buchen!",
+    "Luxus-Hausboot an der Dahme in Berlin-Schmöckwitz: 4 Schlafzimmer, finnische Sauna, Kamin, Dachterrasse. Bis zu 8 Gäste. Ab 350 €/Nacht. Direkt buchen!",
   openGraph: {
     type: "website",
     locale: "de_DE",
-    siteName: "Luxus Hausboote Berlin",
+    siteName: "Luxus Hausboot Berlin",
   },
 };
 

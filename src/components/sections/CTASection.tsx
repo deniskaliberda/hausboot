@@ -17,13 +17,13 @@ export function CTASection() {
         </p>
         <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <Link
-            href="/hausboote"
+            href="/buchen"
             className={cn(
               buttonVariants({ size: "lg", variant: "secondary" }),
               "text-base"
             )}
           >
-            Verfügbarkeit prüfen
+            Jetzt buchen
           </Link>
           <Link
             href="/kontakt"

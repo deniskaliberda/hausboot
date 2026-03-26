@@ -11,11 +11,11 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-2">
               <Anchor className="h-5 w-5 text-primary" />
               <span className="font-serif text-lg font-bold text-primary">
-                Luxus Hausboote
+                Luxus Hausboot
               </span>
             </Link>
             <p className="text-sm text-muted-foreground">
-              Einzigartige Luxus-Hausboote in Berlin-Schmöckwitz.
+              Einzigartiges Luxus-Hausboot in Berlin-Schmöckwitz.
               Direkt am Wasser der Dahme.
             </p>
           </div>
@@ -25,8 +25,8 @@ export function Footer() {
             <h3 className="mb-4 text-sm font-semibold">Navigation</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <Link href="/hausboote" className="hover:text-foreground">
-                  Hausboote
+                <Link href="/buchen" className="hover:text-foreground">
+                  Jetzt buchen
                 </Link>
               </li>
               <li>
@@ -99,7 +99,7 @@ export function Footer() {
         </div>
 
         <div className="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Luxus Hausboote Berlin. Alle Rechte vorbehalten.</p>
+          <p>&copy; {new Date().getFullYear()} Luxus Hausboot Berlin. Alle Rechte vorbehalten.</p>
         </div>
       </div>
     </footer>

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getPropertyBySlug } from "@/lib/data/properties";
+import { PROPERTY } from "@/lib/data/properties";
 
 /**
  * GET /api/availability?propertyId=1&checkIn=2026-06-01&checkOut=2026-06-05

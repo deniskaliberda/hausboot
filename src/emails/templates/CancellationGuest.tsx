@@ -44,7 +44,7 @@ export function CancellationGuest({
         Zeitpunkt buchen möchten, freuen wir uns auf Ihre erneute Anfrage.
       </Text>
 
-      <EmailButton href={`${baseUrl}/hausboote`}>Neuen Termin finden</EmailButton>
+      <EmailButton href={`${baseUrl}/buchen`}>Neuen Termin finden</EmailButton>
 
       <Text style={text}>
         Herzliche Grüße,

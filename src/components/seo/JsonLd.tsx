@@ -49,7 +49,7 @@ export function PropertyJsonLd({
     "@type": "LodgingBusiness",
     name: property.name,
     description: property.short_description,
-    url: `${BASE_URL}/hausboote/${property.slug}`,
+    url: BASE_URL,
     image: images.filter((i) => i.is_hero).map((i) => `${BASE_URL}${i.url}`),
     address: {
       "@type": "PostalAddress",

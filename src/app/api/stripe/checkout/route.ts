@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe/client";
-import { getPropertyBySlug } from "@/lib/data/properties";
+import { PROPERTY } from "@/lib/data/properties";
 import { calculateBookingPrice } from "@/lib/utils/pricing";
 import { bookingFormSchema } from "@/lib/utils/validation";
 import { SITE_URL, STRIPE_CHECKOUT_EXPIRY_SECONDS } from "@/lib/utils/constants";
@@ -15,16 +15,8 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    // Find property by ID (we get propertyId from the form)
-    const allProperties = (await import("@/lib/data/properties")).getAllProperties();
-    const property = allProperties.find((p) => p.id === body.propertyId);
-
-    if (!property) {
-      return NextResponse.json(
-        { error: "Hausboot nicht gefunden" },
-        { status: 404 }
-      );
-    }
+    // Single property – no lookup needed
+    const property = PROPERTY;
 
     // Validate form data
     const result = bookingFormSchema.safeParse(body);
@@ -113,8 +105,8 @@ export async function POST(request: NextRequest) {
         cleaning_fee: pricing.cleaningFee.toString(),
         total_price: pricing.totalPrice.toString(),
       },
-      success_url: `${SITE_URL}/hausboote/${property.slug}/buchen/bestaetigung?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${SITE_URL}/hausboote/${property.slug}/buchen?cancelled=true`,
+      success_url: `${SITE_URL}/buchen/bestaetigung?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${SITE_URL}/buchen?cancelled=true`,
     });
 
     return NextResponse.json({ url: session.url });

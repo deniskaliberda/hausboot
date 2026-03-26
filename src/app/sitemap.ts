@@ -1,18 +1,8 @@
 import type { MetadataRoute } from "next";
-import { getAllProperties } from "@/lib/data/properties";
 
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const properties = getAllProperties();
-
-  const propertyUrls: MetadataRoute.Sitemap = properties.map((p) => ({
-    url: `${BASE_URL}/hausboote/${p.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.9,
-  }));
-
   return [
     {
       url: BASE_URL,
@@ -21,12 +11,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${BASE_URL}/hausboote`,
+      url: `${BASE_URL}/buchen`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
     },
-    ...propertyUrls,
     {
       url: `${BASE_URL}/oldtimer-tour`,
       lastModified: new Date(),

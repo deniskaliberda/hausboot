@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe/client";
 import { sendBookingConfirmation, sendPaymentFailed } from "@/lib/resend/send";
-import { getPropertyBySlug } from "@/lib/data/properties";
+import { PROPERTY } from "@/lib/data/properties";
 
 /**
  * POST /api/stripe/webhook
@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
           guestLastName: metadata.guest_last_name || "",
           guestEmail: metadata.guest_email || "",
           guestPhone: metadata.guest_phone || "",
-          propertyName: getPropertyBySlug(metadata.property_slug || "")?.name || metadata.property_slug || "",
+          propertyName: PROPERTY.name,
           checkIn: metadata.check_in || "",
           checkOut: metadata.check_out || "",
           nights: parseInt(metadata.nights || "0"),
@@ -109,7 +109,7 @@ export async function POST(request: NextRequest) {
           await sendPaymentFailed({
             guestFirstName: metadata.guest_first_name,
             guestEmail: metadata.guest_email,
-            propertyName: getPropertyBySlug(metadata.property_slug || "")?.name || "",
+            propertyName: PROPERTY.name,
             checkIn: metadata.check_in || "",
             checkOut: metadata.check_out || "",
           });

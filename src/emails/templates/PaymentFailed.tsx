@@ -23,7 +23,7 @@ export function PaymentFailed({ guestFirstName, propertyName, checkIn, checkOut 
         Keine Sorge – es wurde kein Betrag abgebucht. Sie können die Buchung jederzeit erneut versuchen:
       </Text>
       <Section style={{ textAlign: "center" as const, margin: "24px 0" }}>
-        <EmailButton href={`${baseUrl}/hausboote`}>Erneut buchen</EmailButton>
+        <EmailButton href={`${baseUrl}/buchen`}>Erneut buchen</EmailButton>
       </Section>
       <Text style={text}>
         Falls Sie Schwierigkeiten bei der Zahlung haben, kontaktieren Sie uns gerne.
