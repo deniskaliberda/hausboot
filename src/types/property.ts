@@ -14,6 +14,7 @@ export interface Property {
   longitude: number | null;
   base_price_per_night: number;
   cleaning_fee: number;
+  laundry_fee_per_person: number;
   min_nights: number;
   max_nights: number;
   amenities: string[];

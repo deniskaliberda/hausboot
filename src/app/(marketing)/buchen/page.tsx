@@ -1,30 +1,22 @@
 import type { Metadata } from "next";
 import { PROPERTY } from "@/lib/data/properties";
-import { BookingForm } from "@/components/booking/BookingForm";
+import { SmoobuCalendar } from "@/components/booking/SmoobuCalendar";
+import { BookingInquiryForm } from "@/components/booking/BookingInquiryForm";
 import { ArrowLeft } from "lucide-react";
 import { buttonVariants } from "@/lib/utils/button-variants";
 import { cn } from "@/lib/utils";
+import { formatEuro } from "@/lib/utils/currency";
+import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
-import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Jetzt buchen",
-  description: `${PROPERTY.name} in ${PROPERTY.district} – Buchen Sie jetzt Ihr einzigartiges Hausboot-Erlebnis. Ab ${(PROPERTY.base_price_per_night / 100).toFixed(0)} €/Nacht.`,
+  description: `${PROPERTY.name} in ${PROPERTY.district} – Prüfen Sie die Verfügbarkeit und senden Sie Ihre Anfrage. Ab ${(PROPERTY.base_price_per_night / 100).toFixed(0)} €/Nacht.`,
 };
 
-export default async function BuchenPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ checkIn?: string; checkOut?: string; cancelled?: string }>;
-}) {
-  const { checkIn, checkOut, cancelled } = await searchParams;
-
-  const heroImage =
-    PROPERTY.property_images.find((img) => img.is_hero) ??
-    PROPERTY.property_images[0];
-
+export default function BuchenPage() {
   return (
-    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
       {/* Back link */}
       <Link
         href="/"
@@ -34,55 +26,40 @@ export default async function BuchenPage({
         Zurück zur Startseite
       </Link>
 
-      <div className="grid gap-10 lg:grid-cols-3">
-        {/* Booking form */}
-        <div className="lg:col-span-2">
-          <h1 className="font-serif text-3xl font-bold">Buchung abschließen</h1>
-          <p className="mt-2 text-muted-foreground">
-            Füllen Sie das Formular aus und schließen Sie Ihre Buchung sicher
-            über Stripe ab.
-          </p>
+      <h1 className="font-serif text-3xl font-bold">Verfügbarkeit & Anfrage</h1>
+      <p className="mt-2 text-muted-foreground">
+        Prüfen Sie die Verfügbarkeit im Kalender und senden Sie uns
+        Ihre unverbindliche Buchungsanfrage.
+      </p>
 
-          <div className="mt-8">
-            <BookingForm
-              property={PROPERTY}
-              initialCheckIn={checkIn}
-              initialCheckOut={checkOut}
-              cancelled={cancelled === "true"}
-            />
-          </div>
+      {/* Pricing info */}
+      <div className="mt-6 rounded-lg border bg-muted/30 p-4 text-sm">
+        <div className="flex flex-wrap gap-x-6 gap-y-1">
+          <span><strong>{formatEuro(PROPERTY.base_price_per_night)}</strong> / Nacht</span>
+          <span>Reinigung: <strong>{formatEuro(PROPERTY.cleaning_fee)}</strong></span>
+          <span>Wäsche: <strong>{formatEuro(PROPERTY.laundry_fee_per_person)}</strong> / Person</span>
+          <span>Mind. {PROPERTY.min_nights} Nächte</span>
         </div>
+      </div>
 
-        {/* Sidebar - Property summary */}
-        <div className="lg:col-span-1">
-          <div className="sticky top-20 overflow-hidden rounded-xl border bg-card shadow-sm">
-            {heroImage && (
-              <div className="relative aspect-[4/3]">
-                <Image
-                  src={heroImage.url}
-                  alt={heroImage.alt_text}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 33vw"
-                />
-              </div>
-            )}
-            <div className="p-5">
-              <h2 className="font-serif text-lg font-semibold">
-                {PROPERTY.name}
-              </h2>
-              <p className="mt-1 text-sm text-muted-foreground">
-                {PROPERTY.district}
-              </p>
-              <div className="mt-3 space-y-1 text-sm text-muted-foreground">
-                <p>Bis zu {PROPERTY.max_guests} Gäste</p>
-                <p>
-                  {PROPERTY.bedrooms} Schlafzimmer · {PROPERTY.bathrooms} Bäder
-                </p>
-                <p>Finnische Sauna · Kamin · Dachterrasse</p>
-              </div>
-            </div>
-          </div>
+      {/* Availability Calendar */}
+      <div className="mt-8">
+        <h2 className="font-serif text-xl font-semibold">Verfügbarkeit</h2>
+        <div className="mt-4 overflow-hidden rounded-xl border bg-card p-4">
+          <SmoobuCalendar />
+        </div>
+      </div>
+
+      <Separator className="my-10" />
+
+      {/* Inquiry Form */}
+      <div>
+        <h2 className="font-serif text-xl font-semibold">Buchungsanfrage</h2>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Füllen Sie das Formular aus und wir melden uns innerhalb von 24 Stunden bei Ihnen.
+        </p>
+        <div className="mt-6">
+          <BookingInquiryForm />
         </div>
       </div>
     </div>

@@ -32,7 +32,8 @@ In unmittelbarer Nähe finden Sie Einkaufsmöglichkeiten, einen Bäcker und ausg
     latitude: 52.3889,
     longitude: 13.6425,
     base_price_per_night: 35000,
-    cleaning_fee: 15000,
+    cleaning_fee: 12500,
+    laundry_fee_per_person: 1800,
     min_nights: 2,
     max_nights: 30,
     amenities: [

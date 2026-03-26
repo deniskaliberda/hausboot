@@ -7,7 +7,6 @@ import { LocationSection } from "@/components/sections/LocationSection";
 import { CTASection } from "@/components/sections/CTASection";
 import { PropertyJsonLd } from "@/components/seo/JsonLd";
 import { PhotoGallery } from "@/components/property/PhotoGallery";
-import { AvailabilityCalendar } from "@/components/booking/AvailabilityCalendar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buttonVariants } from "@/lib/utils/button-variants";
@@ -94,18 +93,16 @@ export default function HomePage() {
                     <span className="text-muted-foreground">/ Nacht</span>
                   </div>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    + {formatEuro(PROPERTY.cleaning_fee)} Reinigungsgebühr (einmalig)
+                    + {formatEuro(PROPERTY.cleaning_fee)} Reinigung (einmalig)
+                  </p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    + {formatEuro(PROPERTY.laundry_fee_per_person)} Wäsche pro Person
                   </p>
                   <p className="mt-1 text-sm text-muted-foreground">
                     Mindestaufenthalt: {PROPERTY.min_nights} Nächte
                   </p>
 
                   <Separator className="my-4" />
-
-                  <AvailabilityCalendar
-                    propertyId={PROPERTY.id}
-                    minNights={PROPERTY.min_nights}
-                  />
 
                   <Link
                     href="/buchen"
@@ -115,7 +112,7 @@ export default function HomePage() {
                   </Link>
 
                   <p className="mt-3 text-center text-xs text-muted-foreground">
-                    Sichere Zahlung über Stripe. Alle Preise inkl. MwSt.
+                    Alle Preise inkl. MwSt.
                   </p>
                 </div>
               </div>

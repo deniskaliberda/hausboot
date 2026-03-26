@@ -13,6 +13,8 @@ import { CleaningReminder } from "@/emails/templates/CleaningReminder";
 import { CleaningConfirmed } from "@/emails/templates/CleaningConfirmed";
 import { InquiryConfirmation } from "@/emails/templates/InquiryConfirmation";
 import { InquiryAdmin } from "@/emails/templates/InquiryAdmin";
+import { BookingInquiryConfirmation } from "@/emails/templates/BookingInquiryConfirmation";
+import { BookingInquiryAdmin } from "@/emails/templates/BookingInquiryAdmin";
 import { PaymentFailed } from "@/emails/templates/PaymentFailed";
 import { ReviewRequest } from "@/emails/templates/ReviewRequest";
 import { createElement } from "react";
@@ -309,6 +311,50 @@ export async function sendInquiryEmails(data: {
           })
         )
       : Promise.resolve({ success: true } as SendResult),
+  ]);
+}
+
+// --- Booking Inquiry Emails ---
+
+const BOOKING_INQUIRY_EMAIL = "info@urlaubsbleibe.de";
+
+export async function sendBookingInquiryEmails(data: {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  checkIn: string;
+  checkOut: string;
+  numGuests: number;
+  message?: string;
+  inquiryNumber: string;
+}) {
+  return Promise.allSettled([
+    send(
+      data.email,
+      `Ihre Buchungsanfrage ${data.inquiryNumber}`,
+      createElement(BookingInquiryConfirmation, {
+        firstName: data.firstName,
+        inquiryNumber: data.inquiryNumber,
+        checkIn: data.checkIn,
+        checkOut: data.checkOut,
+        numGuests: data.numGuests,
+      })
+    ),
+    send(
+      BOOKING_INQUIRY_EMAIL,
+      `Neue Buchungsanfrage: ${data.inquiryNumber}`,
+      createElement(BookingInquiryAdmin, {
+        inquiryNumber: data.inquiryNumber,
+        name: `${data.firstName} ${data.lastName}`,
+        email: data.email,
+        phone: data.phone,
+        checkIn: data.checkIn,
+        checkOut: data.checkOut,
+        numGuests: data.numGuests,
+        message: data.message,
+      })
+    ),
   ]);
 }
 

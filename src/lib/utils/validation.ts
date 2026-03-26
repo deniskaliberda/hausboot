@@ -44,6 +44,22 @@ export const inquiryFormSchema = z.object({
 
 export type InquiryFormData = z.infer<typeof inquiryFormSchema>;
 
+export const bookingInquiryFormSchema = z.object({
+  firstName: z.string().min(2, "Vorname muss mindestens 2 Zeichen lang sein"),
+  lastName: z.string().min(2, "Nachname muss mindestens 2 Zeichen lang sein"),
+  email: z.email("Bitte geben Sie eine gültige E-Mail-Adresse ein"),
+  phone: z.string().min(5, "Bitte geben Sie eine gültige Telefonnummer ein"),
+  checkIn: z.string().date("Bitte Anreisedatum wählen"),
+  checkOut: z.string().date("Bitte Abreisedatum wählen"),
+  numGuests: z.number().int().min(1).max(8),
+  message: z.string().optional(),
+  acceptDatenschutz: z.literal(true, {
+    error: "Sie müssen die Datenschutzerklärung akzeptieren",
+  }),
+});
+
+export type BookingInquiryFormData = z.infer<typeof bookingInquiryFormSchema>;
+
 export const contactFormSchema = z.object({
   name: z.string().min(2, "Name muss mindestens 2 Zeichen lang sein"),
   email: z.email("Bitte geben Sie eine gültige E-Mail-Adresse ein"),
