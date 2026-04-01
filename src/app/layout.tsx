@@ -1,16 +1,21 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { DM_Sans, Literata, Space_Grotesk } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
-const inter = Inter({
+const dmSans = DM_Sans({
   variable: "--font-sans",
   subsets: ["latin", "latin-ext"],
 });
 
-const playfair = Playfair_Display({
+const literata = Literata({
   variable: "--font-serif",
   subsets: ["latin", "latin-ext"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-label",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -35,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de">
-      <body className={`${inter.variable} ${playfair.variable} antialiased`}>
+      <body className={`${dmSans.variable} ${literata.variable} ${spaceGrotesk.variable} antialiased`}>
         {children}
         <Toaster richColors position="top-right" />
       </body>

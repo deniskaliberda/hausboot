@@ -1,112 +1,118 @@
 import Link from "next/link";
 import Image from "next/image";
 import { buttonVariants } from "@/lib/utils/button-variants";
-import { Leaf, Utensils, PawPrint } from "lucide-react";
+import { Users, Flame, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const IMAGES_BASE = "/images/properties/luxus-hausboot-dahme";
 
-const features = [
+const highlights = [
   {
-    icon: Leaf,
-    title: "Naturverbunden",
-    description: "Direkt am Wasser der Dahme, umgeben von Natur",
+    icon: Users,
+    title: "Bis zu 8 Gäste",
+    description: "4 Schlafzimmer, 2 Bäder",
   },
   {
-    icon: Utensils,
-    title: "Voll ausgestattet",
-    description: "Küche, Bad, Sauna und Kamin inklusive",
+    icon: Flame,
+    title: "Finnische Sauna",
+    description: "Entspannung mit Seeblick",
   },
   {
-    icon: PawPrint,
-    title: "Haustierfreundlich",
-    description: "Ihr vierbeiniger Begleiter ist willkommen",
+    icon: Sun,
+    title: "Kamin & Dachterrasse",
+    description: "Panoramablick über die Dahme",
   },
 ];
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-background">
-      {/* Split image hero */}
-      <div className="relative min-h-[70vh] lg:min-h-[75vh]">
-        {/* Two-image grid */}
-        <div className="absolute inset-0 grid grid-cols-1 lg:grid-cols-2">
-          <div className="relative overflow-hidden">
-            <Image
-              src={`${IMAGES_BASE}/essbereich.jpg`}
-              alt="Gemütlicher Essbereich mit Holztisch und Panoramafenster zum See"
-              fill
-              priority
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent lg:bg-gradient-to-r lg:from-black/50 lg:via-black/25 lg:to-black/10" />
+    <section className="relative overflow-hidden">
+      {/* Full-bleed background image */}
+      <div className="relative min-h-screen">
+        <Image
+          src={`${IMAGES_BASE}/exterior-seeblick.jpg`}
+          alt="Luxus-Hausboot an der Dahme mit weitem Blick über den See"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+        {/* Cinematic gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0b1229]/70 via-[#0b1229]/40 to-[#0b1229]/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0b1229]/50 to-transparent" />
+
+        {/* Hero content */}
+        <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 pt-16 text-center">
+          {/* Location badge */}
+          <p className="mb-6 font-[family-name:var(--font-label)] text-xs font-medium uppercase tracking-[0.3em] text-[#c4956a]">
+            Berlin-Schmöckwitz · An der Dahme
+          </p>
+
+          <h1 className="font-serif text-5xl font-bold leading-[1.05] text-[#f5f0e8] sm:text-6xl lg:text-7xl xl:text-8xl">
+            Ihr schwimmendes
+            <br />
+            Zuhause
+          </h1>
+
+          <p className="mx-auto mt-6 max-w-lg text-base text-[#f5f0e8]/70 leading-relaxed sm:text-lg">
+            Einzigartiges Luxus-Hausboot mit Sauna, Kamin und Dachterrasse –
+            fernab vom Trubel und doch mitten in Berlin.
+          </p>
+
+          {/* Price badge */}
+          <div className="mt-8 flex items-center gap-3">
+            <span className="text-3xl font-bold text-[#f5f0e8]">ab 350 €</span>
+            <span className="text-[#f5f0e8]/60">/ Nacht</span>
           </div>
-          <div className="relative hidden overflow-hidden lg:block">
-            <Image
-              src={`${IMAGES_BASE}/exterior-seeblick.jpg`}
-              alt="Blick vom Hausboot auf die Dahme mit weiter Seenlandschaft"
-              fill
-              className="object-cover"
-              sizes="50vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-l from-black/40 via-black/20 to-black/10" />
+
+          {/* CTA buttons */}
+          <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row">
+            <Link
+              href="/buchen"
+              className={cn(
+                buttonVariants({ size: "lg" }),
+                "rounded-full bg-[#c4956a] px-10 text-base font-semibold text-[#0b1229] shadow-lg shadow-[#c4956a]/20 hover:bg-[#e8c9a8] hover:shadow-[#c4956a]/30"
+              )}
+            >
+              Jetzt buchen
+            </Link>
+            <Link
+              href="/kontakt"
+              className={cn(
+                buttonVariants({ size: "lg", variant: "outline" }),
+                "rounded-full border-[#f5f0e8]/20 px-8 text-base text-[#f5f0e8] hover:bg-[#f5f0e8]/10"
+              )}
+            >
+              Kontakt aufnehmen
+            </Link>
           </div>
-        </div>
 
-        {/* Hero content overlay */}
-        <div className="relative z-10 flex min-h-[70vh] items-center lg:min-h-[75vh]">
-          <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-            <div className="max-w-xl">
-              <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-white/70">
-                Berlin-Schmöckwitz · An der Dahme
-              </p>
-
-              <h1 className="font-serif text-4xl font-bold leading-[1.1] text-white sm:text-5xl lg:text-6xl">
-                Ihr schwimmendes
-                <br />
-                Zuhause erwartet Sie
-              </h1>
-
-              <p className="mt-5 max-w-md text-base text-white/75 leading-relaxed sm:text-lg">
-                Einzigartiges Luxus-Hausboot mit Sauna, Kamin und Dachterrasse –
-                fernab vom Trubel und doch mitten in Berlin.
-              </p>
-
-              <div className="mt-8">
-                <Link
-                  href="/buchen"
-                  className={cn(
-                    buttonVariants({ size: "lg" }),
-                    "rounded-full px-8 text-base shadow-lg"
-                  )}
-                >
-                  Jetzt buchen
-                </Link>
-              </div>
+          {/* Scroll indicator */}
+          <div className="absolute bottom-32 left-1/2 -translate-x-1/2 animate-bounce">
+            <div className="h-10 w-6 rounded-full border-2 border-[#f5f0e8]/20 p-1">
+              <div className="mx-auto h-2.5 w-1 rounded-full bg-[#c4956a]" />
             </div>
           </div>
         </div>
-
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 z-10 h-16 bg-gradient-to-t from-background to-transparent" />
       </div>
 
-      {/* Feature cards below hero — inspired by Stitch */}
-      <div className="relative z-20 mx-auto -mt-8 max-w-4xl px-4 sm:px-6 lg:px-8">
+      {/* Floating highlight cards overlapping hero bottom */}
+      <div className="relative z-20 mx-auto -mt-20 max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {features.map((feature) => (
+          {highlights.map((item) => (
             <div
-              key={feature.title}
-              className="flex items-start gap-3 rounded-xl border border-border/50 bg-card px-5 py-4 shadow-sm"
+              key={item.title}
+              className="flex items-start gap-4 rounded-2xl border border-white/[0.08] bg-[#141a32]/80 px-6 py-5 shadow-xl backdrop-blur-xl"
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                <feature.icon className="h-5 w-5 text-primary" />
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#c4956a]/10">
+                <item.icon className="h-5 w-5 text-[#c4956a]" />
               </div>
               <div>
-                <h3 className="text-sm font-semibold">{feature.title}</h3>
-                <p className="mt-0.5 text-xs text-muted-foreground leading-relaxed">
-                  {feature.description}
+                <h3 className="text-sm font-semibold text-[#f5f0e8]">
+                  {item.title}
+                </h3>
+                <p className="mt-0.5 text-xs text-[#8b92b0] leading-relaxed">
+                  {item.description}
                 </p>
               </div>
             </div>
