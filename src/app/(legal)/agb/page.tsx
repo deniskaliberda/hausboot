@@ -13,14 +13,15 @@ export default function AGBPage() {
       <p>
         Diese Allgemeinen Geschäftsbedingungen gelten für alle über unsere
         Website geschlossenen Beherbergungsverträge zwischen dem Gast und
-        [Firmenname] (nachfolgend „Vermieter").
+        Marko Pfaff (nachfolgend „Vermieter") (nachfolgend „Vermieter").
       </p>
 
       <h2>§ 2 Vertragsabschluss</h2>
       <p>
-        Der Beherbergungsvertrag kommt durch die Buchung über unsere Website
-        und die Bestätigung der Zahlung durch Stripe zustande. Mit Abschluss
-        der Zahlung gilt die Buchung als verbindlich.
+        Der Beherbergungsvertrag kommt durch die Buchungsanfrage über unsere
+        Website und die schriftliche Bestätigung durch den Vermieter zustande.
+        Die Buchungsanfrage ist unverbindlich. Erst mit der Bestätigung durch
+        den Vermieter gilt die Buchung als verbindlich.
       </p>
 
       <h2>§ 3 Leistungen</h2>
@@ -34,7 +35,7 @@ export default function AGBPage() {
       <p>
         Alle angegebenen Preise sind Endpreise und enthalten die gesetzliche
         Mehrwertsteuer. Die Reinigungsgebühr wird separat ausgewiesen.
-        Die Zahlung erfolgt bei Buchung über den Zahlungsdienstleister Stripe.
+        Die Zahlungsmodalitäten werden nach Bestätigung der Buchung individuell vereinbart.
       </p>
 
       <h2>§ 5 Check-in / Check-out</h2>
@@ -86,7 +87,7 @@ export default function AGBPage() {
       </p>
 
       <p className="text-sm text-muted-foreground">
-        Stand: März 2026
+        Stand: April 2026
       </p>
     </div>
   );

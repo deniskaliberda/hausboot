@@ -47,7 +47,7 @@ export default function DatenschutzPage() {
       <h3>Hinweis zur verantwortlichen Stelle</h3>
       <p>
         Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:<br />
-        [Kontaktdaten aus dem Impressum]
+        Marko Pfaff, Alte Straße 28, 04651 Bad Lausick, E-Mail: info@urlaubsbleibe.de, Telefon: +49 172 5642200
       </p>
 
       <h2>4. Datenerfassung auf dieser Website</h2>

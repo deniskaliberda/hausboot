@@ -11,31 +11,25 @@ export default function ImpressumPage() {
 
       <h2>Angaben gemäß § 5 DDG</h2>
       <p>
-        [Firmenname]<br />
-        [Straße und Hausnummer]<br />
-        [PLZ Ort]
+        Marko Pfaff<br />
+        Alte Straße 28<br />
+        04651 Bad Lausick
       </p>
 
       <h2>Vertreten durch</h2>
-      <p>[Vorname Nachname]</p>
+      <p>Marko Pfaff</p>
 
       <h2>Kontakt</h2>
       <p>
-        Telefon: [+49 ...]<br />
-        E-Mail: [info@example.de]
-      </p>
-
-      <h2>Umsatzsteuer-ID</h2>
-      <p>
-        Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br />
-        [DE ...]
+        Telefon: +49 172 5642200<br />
+        E-Mail: info@urlaubsbleibe.de
       </p>
 
       <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
       <p>
-        [Vorname Nachname]<br />
-        [Straße und Hausnummer]<br />
-        [PLZ Ort]
+        Marko Pfaff<br />
+        Alte Straße 28<br />
+        04651 Bad Lausick
       </p>
 
       <h2>EU-Streitschlichtung</h2>

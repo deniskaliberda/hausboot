@@ -30,8 +30,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/oldtimer-tour" className="transition-colors hover:text-primary-foreground">
-                  Oldtimer Tour
+                <Link href="/faq" className="transition-colors hover:text-primary-foreground">
+                  FAQ
                 </Link>
               </li>
               <li>
@@ -63,8 +63,8 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 shrink-0" />
-                <a href="tel:+49123456789" className="transition-colors hover:text-primary-foreground">
-                  +49 123 456 789
+                <a href="tel:+491725642200" className="transition-colors hover:text-primary-foreground">
+                  +49 172 5642200
                 </a>
               </li>
             </ul>

@@ -44,7 +44,7 @@ export default function WiderrufsbelehrungPage() {
       </ul>
 
       <p>
-        Die Stornierung muss schriftlich per E-Mail an [info@example.de]
+        Die Stornierung muss schriftlich per E-Mail an info@urlaubsbleibe.de
         erfolgen. Maßgeblich ist das Datum des E-Mail-Eingangs.
       </p>
 
@@ -52,12 +52,12 @@ export default function WiderrufsbelehrungPage() {
       <p>
         Bei Fragen zu Stornierungen oder zur Widerrufsbelehrung wenden Sie
         sich bitte an:<br />
-        E-Mail: [info@example.de]<br />
-        Telefon: [+49 ...]
+        E-Mail: info@urlaubsbleibe.de<br />
+        Telefon: +49 172 5642200
       </p>
 
       <p className="text-sm text-muted-foreground">
-        Stand: März 2026
+        Stand: April 2026
       </p>
     </div>
   );

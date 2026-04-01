@@ -1,6 +1,7 @@
 import { getResend } from "./client";
 import { ADMIN_EMAIL } from "@/lib/utils/constants";
 import { formatEuro } from "@/lib/utils/currency";
+import { createBookingToken } from "@/lib/booking-token";
 import { BookingConfirmationGuest } from "@/emails/templates/BookingConfirmationGuest";
 import { BookingConfirmationAdmin } from "@/emails/templates/BookingConfirmationAdmin";
 import { CancellationGuest } from "@/emails/templates/CancellationGuest";
@@ -11,16 +12,14 @@ import { CheckOutReminder } from "@/emails/templates/CheckOutReminder";
 import { CleaningAssignment } from "@/emails/templates/CleaningAssignment";
 import { CleaningReminder } from "@/emails/templates/CleaningReminder";
 import { CleaningConfirmed } from "@/emails/templates/CleaningConfirmed";
-import { InquiryConfirmation } from "@/emails/templates/InquiryConfirmation";
-import { InquiryAdmin } from "@/emails/templates/InquiryAdmin";
 import { BookingInquiryConfirmation } from "@/emails/templates/BookingInquiryConfirmation";
-import { BookingInquiryAdmin } from "@/emails/templates/BookingInquiryAdmin";
 import { PaymentFailed } from "@/emails/templates/PaymentFailed";
 import { ReviewRequest } from "@/emails/templates/ReviewRequest";
 import { createElement } from "react";
 
-const FROM_EMAIL = process.env.FROM_EMAIL || "noreply@luxus-hausboote.de";
-const FROM_NAME = "Luxus Hausboote Berlin";
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "buchung@urlaubsbleibe.de";
+const FROM_NAME = "Luxus Hausboot Berlin";
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
 interface SendResult {
   success: boolean;
@@ -266,57 +265,10 @@ export async function sendCleaningConfirmedToAdmin(data: {
   );
 }
 
-// --- Inquiry Emails ---
-
-export async function sendInquiryEmails(data: {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  company?: string;
-  eventType: string;
-  preferredDate?: string;
-  alternativeDate?: string;
-  numGuests: number;
-  message: string;
-  inquiryNumber: string;
-}) {
-  return Promise.allSettled([
-    send(
-      data.email,
-      `Ihre Anfrage ${data.inquiryNumber}`,
-      createElement(InquiryConfirmation, {
-        firstName: data.firstName,
-        inquiryNumber: data.inquiryNumber,
-        eventType: data.eventType,
-        preferredDate: data.preferredDate,
-        numGuests: data.numGuests,
-      })
-    ),
-    ADMIN_EMAIL
-      ? send(
-          ADMIN_EMAIL,
-          `Neue Anfrage: ${data.inquiryNumber}`,
-          createElement(InquiryAdmin, {
-            inquiryNumber: data.inquiryNumber,
-            name: `${data.firstName} ${data.lastName}`,
-            email: data.email,
-            phone: data.phone,
-            company: data.company,
-            eventType: data.eventType,
-            preferredDate: data.preferredDate,
-            alternativeDate: data.alternativeDate,
-            numGuests: data.numGuests,
-            message: data.message,
-          })
-        )
-      : Promise.resolve({ success: true } as SendResult),
-  ]);
-}
-
-// --- Booking Inquiry Emails ---
+// --- Booking Inquiry Emails (with Approve/Reject flow) ---
 
 const BOOKING_INQUIRY_EMAIL = "info@urlaubsbleibe.de";
+const BOOKING_CC_EMAIL = "wieland.oswald@fahrzeugbau-pfaff.de";
 
 export async function sendBookingInquiryEmails(data: {
   firstName: string;
@@ -329,7 +281,50 @@ export async function sendBookingInquiryEmails(data: {
   message?: string;
   inquiryNumber: string;
 }) {
+  // Generate approve/reject token
+  const token = createBookingToken({
+    bookingNumber: data.inquiryNumber,
+    checkIn: data.checkIn,
+    checkOut: data.checkOut,
+    numGuests: data.numGuests,
+    guestName: `${data.firstName} ${data.lastName}`,
+    guestEmail: data.email,
+    guestPhone: data.phone,
+    guestMessage: data.message || "",
+  });
+
+  const approveUrl = `${BASE_URL}/api/booking/approve?token=${token}`;
+  const rejectUrl = `${BASE_URL}/api/booking/reject?token=${token}`;
+
+  // Admin email with approve/reject buttons (inline HTML)
+  const adminHtml = `
+    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto;">
+      <div style="background: #1a4a2e; color: white; padding: 24px; border-radius: 12px 12px 0 0;">
+        <h1 style="margin: 0; font-size: 24px;">Neue Buchungsanfrage</h1>
+        <p style="margin: 8px 0 0; opacity: 0.9;">${data.inquiryNumber}</p>
+      </div>
+      <div style="background: #f5f0ea; padding: 24px; border: 1px solid #e0d8cc; border-radius: 0 0 12px 12px;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr><td style="padding: 6px 0; color: #666;">Name:</td><td style="padding: 6px 0; font-weight: 600;">${data.firstName} ${data.lastName}</td></tr>
+          <tr><td style="padding: 6px 0; color: #666;">Email:</td><td style="padding: 6px 0;"><a href="mailto:${data.email}" style="color: #1a4a2e;">${data.email}</a></td></tr>
+          <tr><td style="padding: 6px 0; color: #666;">Telefon:</td><td style="padding: 6px 0;">${data.phone || "–"}</td></tr>
+          <tr><td style="padding: 6px 0; color: #666;">Anreise:</td><td style="padding: 6px 0; font-weight: 600;">${data.checkIn}</td></tr>
+          <tr><td style="padding: 6px 0; color: #666;">Abreise:</td><td style="padding: 6px 0; font-weight: 600;">${data.checkOut}</td></tr>
+          <tr><td style="padding: 6px 0; color: #666;">Gäste:</td><td style="padding: 6px 0;">${data.numGuests}</td></tr>
+        </table>
+        ${data.message ? `<div style="margin-top: 16px; padding: 12px; background: white; border-radius: 8px; border: 1px solid #e0d8cc;"><p style="margin: 0; color: #666; font-size: 13px;">Nachricht:</p><p style="margin: 8px 0 0;">${data.message}</p></div>` : ""}
+        <div style="margin-top: 24px; text-align: center;">
+          <a href="${approveUrl}" style="display: inline-block; padding: 14px 32px; background: #22c55e; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 16px; margin-right: 12px;">✓ Bestätigen</a>
+          <a href="${rejectUrl}" style="display: inline-block; padding: 14px 32px; background: #ef4444; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 16px;">✗ Ablehnen</a>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const resend = getResend();
+
   return Promise.allSettled([
+    // Guest confirmation (React template)
     send(
       data.email,
       `Ihre Buchungsanfrage ${data.inquiryNumber}`,
@@ -341,20 +336,15 @@ export async function sendBookingInquiryEmails(data: {
         numGuests: data.numGuests,
       })
     ),
-    send(
-      BOOKING_INQUIRY_EMAIL,
-      `Neue Buchungsanfrage: ${data.inquiryNumber}`,
-      createElement(BookingInquiryAdmin, {
-        inquiryNumber: data.inquiryNumber,
-        name: `${data.firstName} ${data.lastName}`,
-        email: data.email,
-        phone: data.phone,
-        checkIn: data.checkIn,
-        checkOut: data.checkOut,
-        numGuests: data.numGuests,
-        message: data.message,
-      })
-    ),
+    // Admin email with approve/reject (inline HTML)
+    resend.emails.send({
+      from: `${FROM_NAME} <${FROM_EMAIL}>`,
+      to: BOOKING_INQUIRY_EMAIL,
+      cc: BOOKING_CC_EMAIL,
+      replyTo: data.email,
+      subject: `Neue Buchungsanfrage: ${data.inquiryNumber} – ${data.firstName} ${data.lastName} (${data.checkIn} – ${data.checkOut})`,
+      html: adminHtml,
+    }),
   ]);
 }
 

@@ -12,8 +12,8 @@ export default function KontaktPage() {
       <div className="mx-auto max-w-3xl text-center">
         <h1 className="font-serif text-4xl font-bold sm:text-5xl">Kontakt</h1>
         <p className="mt-6 text-lg text-muted-foreground">
-          Haben Sie Fragen zu unseren Hausbooten oder möchten Sie ein
-          besonderes Erlebnis planen? Wir freuen uns auf Ihre Nachricht.
+          Haben Sie Fragen zu unserem Hausboot oder möchten Sie
+          Ihren Aufenthalt planen? Wir freuen uns auf Ihre Nachricht.
         </p>
       </div>
 
@@ -25,10 +25,10 @@ export default function KontaktPage() {
           </CardHeader>
           <CardContent>
             <a
-              href="mailto:info@example.de"
+              href="mailto:info@urlaubsbleibe.de"
               className="text-primary hover:underline"
             >
-              info@example.de
+              info@urlaubsbleibe.de
             </a>
             <p className="mt-2 text-sm text-muted-foreground">
               Wir antworten in der Regel innerhalb von 24 Stunden.
@@ -43,10 +43,10 @@ export default function KontaktPage() {
           </CardHeader>
           <CardContent>
             <a
-              href="tel:+49123456789"
+              href="tel:+491725642200"
               className="text-primary hover:underline"
             >
-              +49 123 456 789
+              +49 172 5642200
             </a>
             <p className="mt-2 text-sm text-muted-foreground">
               Mo–Fr: 9:00–18:00 Uhr
